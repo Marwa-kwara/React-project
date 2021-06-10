@@ -1,7 +1,7 @@
 import React from "react";
 import { CountryContext } from "./CountryContext";
 import { useContext } from "react";
-import Button from "./Button";
+import Button from "../pages/Button";
 
 export default function CountriesView({ name, flag, onClick }) {
   const [countriesList, isLoading, hasError] = useContext(CountryContext);

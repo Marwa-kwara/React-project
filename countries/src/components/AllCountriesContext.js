@@ -1,9 +1,9 @@
 import { useEffect, createContext } from "react";
 import useFetch from "../hooks/useFetch";
 
-export const CountryContext = createContext();
+export const AllCountriesContext = createContext();
 
-export const CountryProvider = (props) => {
+export const AllCountriesProvider = (props) => {
   const url = "https://restcountries.eu/rest/v2/all";
   const { isLoading, hasError, countriesList, fetchAllCountries } =
     useFetch(url);
@@ -13,8 +13,8 @@ export const CountryProvider = (props) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={[countriesList, isLoading, hasError]}>
+    <AllCountriesContext.Provider value={[countriesList, isLoading, hasError]}>
       {props.children}
-    </CountryContext.Provider>
+    </AllCountriesContext.Provider>
   );
 };

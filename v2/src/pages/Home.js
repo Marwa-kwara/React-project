@@ -1,15 +1,15 @@
-import CountriesView from "../components/AllCountries";
-//import Search from "../components/Search";
+import AllCountries from "../components/AllCountries";
+import Search from "../components/Search";
 import "../App.css";
 
 export default function Home() {
   return (
     <section className="section">
-      {/* <div>
+      <div>
         <Search />
-      </div> */}
+      </div>
       <div className="AllCountries">
-        <CountriesView />
+        <AllCountries />
       </div>
     </section>
   );

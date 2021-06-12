@@ -11,7 +11,6 @@ const useFetch = (url) => {
     try {
       setIsLoading(true);
       const response = await fetch(url);
-
       const allCountries = await response.json();
       setCountriesList(allCountries);
     } catch {
@@ -25,8 +24,8 @@ const useFetch = (url) => {
     try {
       setIsLoading(true);
       const response = await fetch(url);
-      const oneCountry = await response.json();
-      setCountryDetails(oneCountry);
+      const countryData = await response.json();
+      setCountryDetails(countryData);
       setHasError(false);
     } catch {
       setHasError(true);

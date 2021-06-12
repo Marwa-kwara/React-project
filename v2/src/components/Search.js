@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
-import CountryMoreInfoView from "../pages/CountryMoreInfoView";
 
 const Search = () => {
   const [countryName, setCountryName] = useState("");
@@ -40,7 +39,6 @@ const Search = () => {
       </form>
       {isLoading && <p className="loading">Loading....</p>}
       {hasError && <p className="error">Something Went Wrong!</p>}
-      <CountryMoreInfoView />
     </div>
   );
 };

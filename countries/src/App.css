@@ -22,3 +22,18 @@ footer {
   align-items: center;
   list-style: none;
 }
+.CountriesView {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.countryListContainer {
+  width: 30%;
+  border: 1px solid;
+  border-radius: 2%;
+  padding: 1rem;
+  margin: 1rem;
+}
+.countriesListImg {
+  width: 40%;
+}

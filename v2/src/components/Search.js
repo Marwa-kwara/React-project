@@ -1,33 +1,38 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { CountryContext } from "../contexts/CountryContext";
+import OneCountry from "../components/OneCountry";
 
-const Search = ({ value }) => {
+const Search = () => {
   const [countryName, setCountryName] = useState("");
-  const { isLoading, hasError, setPath } = useContext(CountryContext);
+  const [countryDetails, setCountryDetails] = useState();
   const refContainer = useRef(null);
-  //   const url = `https://restcountries.eu/rest/v2/alpha/${countryName}`;
+  const { isLoading, hasError } = useContext(CountryContext);
+
+  useEffect(() => {
+    refContainer.current.focus();
+  });
+
+  const fetchCountryData = async () => {
+    const response = await fetch(
+      `https://restcountries.eu/rest/v2/name/${countryName}`
+    );
+    const result = await response.json();
+    setCountryDetails(result);
+    console.log(result);
+  };
+
+  const handleSubmit = (e) => {
+    fetchCountryData();
+  };
 
   const handleChange = (event) => {
     setCountryName(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.onSubmit();
-    const {
-      params: { name },
-    } = props.match;
-
-    useEffect(() => {
-      setPath(alpha3Code);
-    }, [alpha3Code, setPath]);
-  };
-
-  useEffect(() => {
-    refContainer.current.focus();
-  });
   return (
-    <div>
+    <div className="search">
+      <h1 className="header">Country Finder</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -37,15 +42,21 @@ const Search = ({ value }) => {
           ref={refContainer}
           onChange={handleChange}
         />
-        <Link to={`$country.name`}>
-          <button type="submit" disabled={!value && true}>
+        <Link to={`/${countryName}`}>
+          <button
+            type="submit"
+            disabled={!countryName && true}
+            onClick={handleSubmit}
+          >
             Search Country
           </button>
         </Link>
       </form>
       {isLoading && <p className="loading">Loading....</p>}
       {hasError && <p className="error">Something Went Wrong!</p>}
+      {countryDetails && <OneCountry country={countryDetails} />}
     </div>
   );
 };
+
 export default Search;

@@ -34,7 +34,6 @@ export default function CountryContextProvider(props) {
         );
         const result = await response.json();
         setCountry(result);
-        console.log(result);
         setHasError(false);
       } catch {
         setHasError(true);

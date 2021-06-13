@@ -36,7 +36,8 @@
     transform: rotate(360deg);
   }
 }
-nav {
+nav,
+footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -53,4 +54,18 @@ nav {
 }
 img {
   width: 40%;
+  margin: 15px;
+}
+.search {
+  margin: 20px;
+}
+.card {
+  border: 1px solid;
+  width: 25%;
+  margin: 3px;
+}
+.countryContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

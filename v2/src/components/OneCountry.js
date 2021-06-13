@@ -1,11 +1,11 @@
 export default function Card({ country }) {
   return (
-    <div>
+    <div className="oneCard">
       <img src={country.flag} alt={""} />
-      <h2>Country name : {country.name} </h2>
-      <h2>Capital :{country.capital}</h2>
-      <h2>alpha3Code:{country.alpha3Code}</h2>
-      <h2>population:{country.population}</h2>
+      <h3>Country name : {country.name} </h3>
+      <h3>Capital :{country.capital}</h3>
+      <h3>alpha3Code:{country.alpha3Code}</h3>
+      <h3>population:{country.population}</h3>
     </div>
   );
 }

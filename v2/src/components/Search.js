@@ -32,7 +32,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <h1 className="header">Country Finder</h1>
+      <h2 className="header">Country Finder</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

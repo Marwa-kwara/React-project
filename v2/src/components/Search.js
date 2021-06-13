@@ -1,44 +1,60 @@
-import { useState, useEffect, useRef } from "react";
-import useFetch from "../hooks/useFetch";
+import { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
+import { CountryContext } from "../contexts/CountryContext";
+import OneCountry from "../components/OneCountry";
 
 const Search = () => {
   const [countryName, setCountryName] = useState("");
+  const [countryDetails, setCountryDetails] = useState();
   const refContainer = useRef(null);
-  const url = `https://restcountries.eu/rest/v2/name/${countryName}`;
-  const { isLoading, hasError, fetchCountryDetails } = useFetch(url);
-
-  const onSubmit = (e) => {
-    e.onSubmit();
-    fetchCountryDetails();
-  };
+  const { isLoading, hasError } = useContext(CountryContext);
 
   useEffect(() => {
     refContainer.current.focus();
   });
 
+  const fetchCountryData = async () => {
+    const response = await fetch(
+      `https://restcountries.eu/rest/v2/name/${countryName}`
+    );
+    const result = await response.json();
+    setCountryDetails(result);
+    console.log(result);
+  };
+
+  const handleSubmit = (e) => {
+    fetchCountryData();
+  };
+
+  const handleChange = (event) => {
+    setCountryName(event.target.value);
+  };
+
   return (
     <div className="search">
-      <h1 className="headerCityPage">Country</h1>
-      <form onSubmit={onSubmit}>
+      <h1 className="header">Country Finder</h1>
+      <form onSubmit={handleSubmit}>
         <input
-          className="searchInput"
           type="text"
-          placeholder="Search Country"
+          name="cityName"
+          placeholder="Enter Country"
           value={countryName}
           ref={refContainer}
-          onChange={(e) => {
-            setCountryName(e.target.value);
-          }}
+          onChange={handleChange}
         />
-        <Link to={`$country.name`}>
-          <button className="searchSubmit" type="submit">
-            Search
+        <Link to={`/${countryName}`}>
+          <button
+            type="submit"
+            disabled={!countryName && true}
+            onClick={handleSubmit}
+          >
+            Search Country
           </button>
         </Link>
       </form>
       {isLoading && <p className="loading">Loading....</p>}
       {hasError && <p className="error">Something Went Wrong!</p>}
+      {countryDetails && <OneCountry country={countryDetails} />}
     </div>
   );
 };

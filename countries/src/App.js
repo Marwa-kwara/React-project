@@ -22,7 +22,7 @@ const App = () => {
               <Route path="/about" component={About} />
               <Route path="/compare" component={Compare} />
               <Route path="/borders" component={Borders} />
-              <Route path="/:name" exact component={CountryMoreInfo} />
+              <Route path="/:name" component={CountryMoreInfo} />
             </Switch>
             <Footer />
           </div>

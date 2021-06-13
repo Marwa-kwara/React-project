@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+nav,
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: rgb(73, 79, 82);
+  color: white;
+}
+.nav-links {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+img {
+  width: 40%;
+  margin: 15px;
+}
+.search {
+  margin: 20px;
+}
+.card {
+  border: 1px solid;
+  width: 25%;
+  margin: 3px;
+}
+.countryContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

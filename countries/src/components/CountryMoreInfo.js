@@ -1,19 +1,19 @@
 import { CountryMoreInfoContext } from "./CountryMoreInfoContext";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import "../App.css";
 import CountryMoreInfoView from "../pages/CountryMoreInfoView";
 
-export default function CountryView() {
-  // const {
-  //   params: { name },
-  // } = match;
+export default function CountryView({ match }) {
+  const {
+    params: { name },
+  } = match;
 
-  const [isLoading, hasError, countryDetail] = useContext(
+  const [isLoading, hasError, countryDetail, setPath] = useContext(
     CountryMoreInfoContext
   );
-  // useEffect(() => {
-  //   setPath(name);
-  // }, [name]);
+  useEffect(() => {
+    setPath(name);
+  }, [name]);
 
   return (
     <div>

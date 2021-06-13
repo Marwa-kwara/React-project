@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 function Nav() {
   const navStyle = {
     color: "white",
@@ -13,13 +14,13 @@ function Nav() {
           <li>About</li>
         </Link>
 
-        <Link style={navStyle} to="/borders">
+        {/* <Link style={navStyle} to="/borders">
           <li>Borders</li>
         </Link>
 
         <Link style={navStyle} to="/compare">
           <li>Compare</li>
-        </Link>
+        </Link> */}
       </ul>
     </nav>
   );

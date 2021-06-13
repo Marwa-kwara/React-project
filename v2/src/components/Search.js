@@ -1,39 +1,45 @@
-import { useState, useEffect, useRef } from "react";
-import useFetch from "../hooks/useFetch";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CountryContext } from "../contexts/CountryContext";
 
-const Search = () => {
+const Search = ({ value }) => {
   const [countryName, setCountryName] = useState("");
+  const { isLoading, hasError, setPath } = useContext(CountryContext);
   const refContainer = useRef(null);
-  const url = `https://restcountries.eu/rest/v2/name/${countryName}`;
-  const { isLoading, hasError, fetchCountryDetails } = useFetch(url);
+  //   const url = `https://restcountries.eu/rest/v2/alpha/${countryName}`;
 
-  const onSubmit = (e) => {
+  const handleChange = (event) => {
+    setCountryName(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.onSubmit();
-    fetchCountryDetails();
+    const {
+      params: { name },
+    } = props.match;
+
+    useEffect(() => {
+      setPath(alpha3Code);
+    }, [alpha3Code, setPath]);
   };
 
   useEffect(() => {
     refContainer.current.focus();
   });
-
   return (
-    <div className="search">
-      <h1 className="headerCityPage">Country</h1>
-      <form onSubmit={onSubmit}>
+    <div>
+      <form onSubmit={handleSubmit}>
         <input
-          className="searchInput"
           type="text"
-          placeholder="Search Country"
+          name="cityName"
+          placeholder="Enter Country"
           value={countryName}
           ref={refContainer}
-          onChange={(e) => {
-            setCountryName(e.target.value);
-          }}
+          onChange={handleChange}
         />
         <Link to={`$country.name`}>
-          <button className="searchSubmit" type="submit">
-            Search
+          <button type="submit" disabled={!value && true}>
+            Search Country
           </button>
         </Link>
       </form>
@@ -42,5 +48,4 @@ const Search = () => {
     </div>
   );
 };
-
 export default Search;

@@ -6,24 +6,24 @@ import About from "./pages/About";
 import Footer from "./pages/Footer";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AllCountriesProvider } from "./components/AllCountriesContext";
-import CountryMoreInfo from "./components/CountryMoreInfo";
+import CountryContextProvider from "./contexts/CountryContext";
+import Details from "./pages/Details";
 
 const App = () => {
   return (
-    <AllCountriesProvider>
+    <CountryContextProvider>
       <Router>
         <div className="App">
           <Nav />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/about" component={About} />
-            <Route path="/:name" component={CountryMoreInfo} />
+            <Route path="/country/:alpha3Code" component={Details} />
           </Switch>
           <Footer />
         </div>
       </Router>
-    </AllCountriesProvider>
+    </CountryContextProvider>
   );
 };
 

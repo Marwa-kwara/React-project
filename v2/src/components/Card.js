@@ -7,7 +7,7 @@ export default function Card({ country }) {
     <div className="card">
       <Link to={`/${alpha3Code}`}>
         <img className="countriesListImg" src={flag} alt={""} />
-        <h2>Country name : {name} </h2>
+        <h3> {name} </h3>
       </Link>
     </div>
   );

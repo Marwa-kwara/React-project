@@ -27,8 +27,7 @@ footer {
   list-style: none;
 }
 img {
-  width: 40%;
-  margin: 15px;
+  width: 80%;
 }
 
 .card {
@@ -45,7 +44,7 @@ img {
 }
 @media screen and (min-width: 768px) {
   .countryContainer {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 h2,

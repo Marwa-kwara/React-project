@@ -1,33 +1,26 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import OneCountry from "../components/OneCountry";
 
 const Search = () => {
-  const [countryName, setCountryName] = useState("");
-  const [countryDetails, setCountryDetails] = useState();
+  const [path, setPath] = useState("");
+  const url = `https://restcountries.eu/rest/v2/name/${path}`;
+
   const refContainer = useRef(null);
-  const { isLoading, hasError } = useFetch;
+  const { isLoading, hasError, countryDetails, fetchSearchCountry } =
+    useFetch(url);
 
   useEffect(() => {
     refContainer.current.focus();
   });
 
-  const fetchCountryData = async () => {
-    const response = await fetch(
-      `https://restcountries.eu/rest/v2/name/${countryName}`
-    );
-    const result = await response.json();
-    setCountryDetails(result);
-    console.log(result);
-  };
-
   const handleSubmit = (e) => {
-    fetchCountryData();
+    fetchSearchCountry();
   };
 
   const handleChange = (event) => {
-    setCountryName(event.target.value);
+    setPath(event.target.value);
   };
 
   return (
@@ -38,15 +31,15 @@ const Search = () => {
           type="text"
           name="cityName"
           placeholder="Enter Country Name..."
-          value={countryName}
+          value={path}
           ref={refContainer}
           onChange={handleChange}
         />
-        <Link to={`/${countryName}`}>
+        <Link to={`/${path}`}>
           <button
             className="button"
             type="submit"
-            disabled={!countryName && true}
+            disabled={!path && true}
             onClick={handleSubmit}
           >
             Search

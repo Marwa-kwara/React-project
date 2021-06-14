@@ -1,14 +1,12 @@
 import "./App.css";
 import Nav from "./pages/Navbar";
 import About from "./pages/About";
-//import Borders from "./components/Border";
-//import Compare from "./components/Compare";
 import Footer from "./pages/Footer";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CountryContextProvider from "./contexts/CountryContext";
 import Details from "./pages/Details";
-import OneCountry from "./components/OneCountry";
+//import OneCountry from "./components/OneCountry";
 
 const App = () => {
   return (

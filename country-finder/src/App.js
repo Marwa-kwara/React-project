@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CountryContextProvider from "./contexts /CountryContext";
 import Details from "./pages/Details";
 import DetailsContextProvider from "./contexts /DetailsContext";
-//import OneCountry from "./components/OneCountry";
+import OneCountry from "./components/OneCountry";
 
 const App = () => {
   return (

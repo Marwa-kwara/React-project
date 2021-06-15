@@ -8,7 +8,7 @@ const Search = () => {
   const url = `https://restcountries.eu/rest/v2/name/${path}`;
 
   const refContainer = useRef(null);
-  const { isLoading, hasError, countryDetails, fetchSearchCountry } =
+  const { isLoading, hasError, searchedCountry, fetchSearchCountry } =
     useFetch(url);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Search = () => {
       </form>
       {isLoading && <p className="loading">Loading....</p>}
       {hasError && <p className="error">Something Went Wrong!</p>}
-      {countryDetails && <OneCountry country={countryDetails} />}
+      {searchedCountry && <OneCountry path={searchedCountry} />}
     </div>
   );
 };

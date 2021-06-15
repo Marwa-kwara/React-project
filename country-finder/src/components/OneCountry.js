@@ -1,6 +1,7 @@
 export default function OneCountry({ country }) {
   const { name, flag, alpha3Code, population, subregion, region, capital } =
     country;
+  console.log(country);
   return (
     <div className="oneCard">
       <h1> {name} </h1>

@@ -5,7 +5,7 @@ const useFetch = (url) => {
   const [hasError, setHasError] = useState(false);
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState([]);
-  const [countryDetails, setCountryDetails] = useState();
+  const [searchedCountry, setSearchedCountry] = useState();
 
   const fetchAllCountries = async () => {
     try {
@@ -20,11 +20,12 @@ const useFetch = (url) => {
     }
   };
 
-  const fetchCountryDetails = async () => {
+  const fetchCountry = async () => {
     try {
       setIsLoading(true);
       const response = await fetch(url);
       const result = await response.json();
+      console.log(result);
       setCountry(result);
       setHasError(false);
     } catch {
@@ -39,7 +40,7 @@ const useFetch = (url) => {
       const response = await fetch(url);
       const result = await response.json();
       console.log(result);
-      setCountryDetails(result);
+      setSearchedCountry(result);
       setHasError(false);
     } catch {
       setHasError(true);
@@ -53,9 +54,9 @@ const useFetch = (url) => {
     hasError,
     countries,
     country,
-    countryDetails,
+    searchedCountry,
     fetchAllCountries,
-    fetchCountryDetails,
+    fetchCountry,
     fetchSearchCountry,
   };
 };

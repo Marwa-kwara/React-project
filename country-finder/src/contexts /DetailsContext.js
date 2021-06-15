@@ -7,10 +7,10 @@ export default function DetailsContextProvider(props) {
   const [path, setPath] = useState("");
 
   const url = `https://restcountries.eu/rest/v2/alpha/${path}`;
-  const { isLoading, hasError, country, fetchCountryDetails } = useFetch(url);
+  const { isLoading, hasError, country, fetchCountry } = useFetch(url);
   useFetch(url);
   useEffect(() => {
-    if (path) fetchCountryDetails();
+    if (path) fetchCountry();
   }, [path]);
 
   return (
@@ -19,7 +19,7 @@ export default function DetailsContextProvider(props) {
         isLoading,
         hasError,
         country,
-        fetchCountryDetails,
+        fetchCountry,
         setPath,
       }}
     >

@@ -3,16 +3,14 @@ import { useState } from "react";
 const useFetch = (url) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState([]);
-  const [searchedCountry, setSearchedCountry] = useState();
+  const [searchResult, setSearchResult] = useState(null);
 
-  const fetchAllCountries = async () => {
+  const fetchFunction = async () => {
     try {
       setIsLoading(true);
       const response = await fetch(url);
       const result = await response.json();
-      setCountries(result);
+      setSearchResult(result);
     } catch {
       setHasError(true);
     } finally {
@@ -20,44 +18,6 @@ const useFetch = (url) => {
     }
   };
 
-  const fetchCountry = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(url);
-      const result = await response.json();
-      console.log(result);
-      setCountry(result);
-      setHasError(false);
-    } catch {
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  const fetchSearchCountry = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(url);
-      const result = await response.json();
-      console.log(result);
-      setSearchedCountry(result);
-      setHasError(false);
-    } catch {
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return {
-    isLoading,
-    hasError,
-    countries,
-    country,
-    searchedCountry,
-    fetchAllCountries,
-    fetchCountry,
-    fetchSearchCountry,
-  };
+  return [fetchFunction, searchResult, isLoading, hasError];
 };
 export default useFetch;
